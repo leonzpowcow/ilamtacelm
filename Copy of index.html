@@ -20,5 +20,59 @@
     </div>
 
     <script src="script.js"></script> <!-- Link to external JavaScript file -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div id="container">
+        <div id="image-container"></div> 
+        <div id="text-container"></div>
+        <div id="button-container"></div>
+    </div>
+
+    <script>
+        let storyIndex = 0;
+        const storySteps = [
+            { img: 'meet.jpg', text: 'We first met on...', date: 'January 1, 2023' },
+            { img: 'first-date.jpg', text: 'Our first date was...', date: 'February 14, 2023' },
+            { img: 'confession.jpg', text: 'The day I confessed...', date: 'March 10, 2023' }
+        ];
+
+        function startJourney() {
+            document.getElementById('text-container').innerHTML = '';
+            document.getElementById('button-container').innerHTML = '';
+            showStoryStep();
+        }
+
+        function showStoryStep() {
+            if (storyIndex < storySteps.length) {
+                const step = storySteps[storyIndex];
+                document.getElementById('image-container').innerHTML = `<img src="${step.img}" alt="Story Image">`;
+                document.getElementById('text-container').innerHTML = `<p>${step.text}</p><small>${step.date}</small>`;
+                document.getElementById('button-container').innerHTML = `<button onclick="nextStep()">Next</button>`;
+            } else {
+                document.getElementById('container').innerHTML = '<h2>And the journey continues... ❤️</h2>';
+            }
+        }
+
+        function nextStep() {
+            storyIndex++;
+            showStoryStep();
+        }
+
+        function displayCatHeart() {
+            document.getElementById('image-container').innerHTML = '<img src="cat-heart.gif" alt="Cat Heart">';
+            setTimeout(() => {
+                document.getElementById('text-container').innerHTML = '<h2>Start our journey?</h2>';
+                document.getElementById('button-container').innerHTML = '<button onclick="startJourney()">Play</button>';
+            }, 5000);
+        }
+
+        displayCatHeart();
+    </script>
 </body>
 </html>
